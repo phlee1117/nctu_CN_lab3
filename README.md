@@ -66,9 +66,6 @@ In this lab, we are going to write a Python program with Ryu SDN framework to bu
 ---
 ## References
 
-> TODO: 
-> * Please add your references in the following
-
 * **Ryu SDN**
     * [Ryubook Documentation](https://osrg.github.io/ryu-book/en/html/)
     * [Ryubook [PDF]](https://osrg.github.io/ryu-book/en/Ryubook.pdf)
@@ -90,10 +87,7 @@ In this lab, we are going to write a Python program with Ryu SDN framework to bu
 ---
 ## Contributors
 
-> TODO:
-> * Please replace "`YOUR_NAME`" and "`YOUR_GITHUB_LINK`" into yours
-
-* [YOUR_NAME](YOUR_GITHUB_LINK)
+* [Hank Lee](https://github.com/phlee1117)
 * [David Lu](https://github.com/yungshenglu)
 
 ---
