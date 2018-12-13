@@ -67,22 +67,20 @@ In this lab, we are going to write a Python program with Ryu SDN framework to bu
 ## References
 
 * **Ryu SDN**
-    * [Ryubook Documentation](https://osrg.github.io/ryu-book/en/html/)
-    * [Ryubook [PDF]](https://osrg.github.io/ryu-book/en/Ryubook.pdf)
-    * [Ryu 4.30 Documentation](https://github.com/mininet/mininet/wiki/Introduction-to-Mininet)
+    * [Ryubook readthedocs(中文)](https://ryu-zhdoc.readthedocs.io/index.html)
+    * [Ryubook 說明文件](https://osrg.github.io/ryu-book/zh_tw/html/)
     * [Ryu Controller Tutorial](http://sdnhub.org/tutorials/ryu/)
     * [OpenFlow 1.3 Switch Specification](https://www.opennetworking.org/wp-content/uploads/2014/10/openflow-spec-v1.3.0.pdf)
-    * [Ryubook 說明文件](https://osrg.github.io/ryu-book/zh_tw/html/)
+    * [網管人-詳解Flow Table比對機制](https://www.netadmin.com.tw/article_content.aspx?sn=1610070003)
     * [GitHub - Ryu Controller 教學專案](https://github.com/OSE-Lab/Learning-SDN/blob/master/Controller/Ryu/README.md)
     * [Ryu SDN 指南 – Pengfei Ni](https://feisky.gitbooks.io/sdn/sdn/ryu.html)
     * [OpenFlow 通訊協定](https://osrg.github.io/ryu-book/zh_tw/html/openflow_protocol.html)
+    * [Ryu doc](https://ryu-zhdoc.readthedocs.io/ryu_app_api.html)
 * **Python**
     * [Python 2.7.15 Standard Library](https://docs.python.org/2/library/index.html)
-    * [Python Tutorial - Tutorialspoint](https://www.tutorialspoint.com/python/)
+    * [理解Python装饰器看这一篇就够了](https://foofish.net/python-decorator.html)
 * **Others**
     * [Cheat Sheet of Markdown Syntax](https://www.markdownguide.org/cheat-sheet)
-    * [Vim Tutorial – Tutorialspoint](https://www.tutorialspoint.com/vim/index.htm)
-    * [鳥哥的 Linux 私房菜 – 第九章、vim 程式編輯器](http://linux.vbird.org/linux_basic/0310vi.php)
 
 ---
 ## Contributors
