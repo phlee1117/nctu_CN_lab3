@@ -96,7 +96,7 @@ class SimpleController1(app_manager.RyuApp):
                 ipv4_dst="10.0.0.2",
                 ip_proto=17,
                 udp_dst=5566)
-            actions = [parser.OFPActionOutput(2)]
+            actions = [parser.OFPActionOutput(port=3)]
             self.add_flow(
                 datapath=datapath,
                 priority=3,
@@ -110,7 +110,7 @@ class SimpleController1(app_manager.RyuApp):
                 ipv4_dst="10.0.0.1",
                 ip_proto=17,
                 udp_dst=5566)
-            actions = [parser.OFPActionOutput(1)]
+            actions = [parser.OFPActionOutput(port=1)]
             self.add_flow(
                 datapath=datapath,
                 priority=3,
@@ -127,7 +127,7 @@ class SimpleController1(app_manager.RyuApp):
                 ipv4_dst="10.0.0.1",
                 ip_proto=17,
                 udp_dst=5566)
-            actions = [parser.OFPActionOutput(1)]
+            actions = [parser.OFPActionOutput(port=1)]
             self.add_flow(
                 datapath=datapath,
                 priority=3,
@@ -144,7 +144,7 @@ class SimpleController1(app_manager.RyuApp):
                 ipv4_dst="10.0.0.1",
                 ip_proto=17,
                 udp_dst=5566)
-            actions = [parser.OFPActionOutput(3)]
+            actions = [parser.OFPActionOutput(port=3)]
             self.add_flow(
                 datapath=datapath,
                 priority=3,
@@ -158,7 +158,7 @@ class SimpleController1(app_manager.RyuApp):
                 ipv4_dst="10.0.0.2",
                 ip_proto=17,
                 udp_dst=5566)
-            actions = [parser.OFPActionOutput(1)]
+            actions = [parser.OFPActionOutput(port=1)]
             self.add_flow(
                 datapath=datapath,
                 priority=3,
