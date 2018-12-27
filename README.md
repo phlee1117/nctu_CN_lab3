@@ -51,10 +51,19 @@ In this lab, we are going to write a Python program with Ryu SDN framework to bu
 - `--obseve-links`
     - Observe link discovery events.
     - It would dump information about links
+
 ##### forwarding rules in SimpleController.py #
 ![SimpleController](./src/screenshot/SimpleController.PNG)
 ##### forwarding rules in controller.py #
 ![controller](./src/screenshot/controller.PNG)
+
+> ryu-manager sometimes **cannnot** get all the links, especially the link between s1 & s3\
+> Repeat it until you get all 6 links betwen s1 s2 s3
+> **failure screenshot**\
+> ![ryu-fail](./src/screenshot/ryu-fail.PNG)
+> **successful screenshots for both controller**\
+> ![ryu-SimpleController](./src/screenshot/ryu-Simple.PNG)
+> ![ryu-controller](./src/screenshot/ryu-controller.PNG)
 
 **3. Run iPerf commands in mininet CLI**
 > use `pingall` command to check if h1<->h2 is connected\
@@ -224,7 +233,14 @@ Then use `$ mn -c` to clean it up (it would also terminate the Ryu-manager)
     The only difference between 2 forwarding rule is in flow **h2->h1**\
     In controller.py, switch s3 forwards datagrams to switch s2 then s2 sends it to s1(s3->s2->s1)\
     In SimpleController.py s3 directly forwards datagrams to switch s1(s3->s1)\
-    Link **s1<->s3** has lower bandwidth & higher delay, loss rate than both link **s1<->s2** and link **s2<->s3**\
+    Link **s1<->s3** has lower bandwidth & higher delay, loss rate than both link **s1<->s2** and link **s2<->s3**
+    > **Bandwidth comparison**:\
+    > min(s1<->s2, s2<->s3)=**20Mbps > 10Mbs**=s3->s1\
+    > **Delay**:\
+    > s3->s2->s1=2ms+2ms=**4ms < 5ms**=s3->s1\
+    > **Data completeness**:\
+    > s3->s2->s1 99%*99%=**98.01% > 98%**=s3->s1
+
     So it's easy to tell **the forwarding rule in controller.py is better**, which use the link s1<->s2 and link s2<->s3
 ---
 ## References
