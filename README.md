@@ -226,8 +226,8 @@ Then use `$ mn -c` to clean it up (it would also terminate the Ryu-manager)
 7. Compare the differences between the iPerf results of `SimpleController.py` and `controller.py` in detail.\
     According to result1 & result2:\
     In some test cases, we have **more datagrams transferd and better bandwidth in controller.py** compared to SimpleController.py\
-    So overall, **controller.py has higher bandwdth & lower jitter, lost rate**
-    > Please checkout ./src/out/[result1|result2].
+    So overall, **controller.py has higher bandwdth & lower lost rate, yet higher jitter than SimpleController.py**
+    > Please checkout ./src/out/[result1|result2]
     > They have more detail than the output by the iPerf command
 8. Which forwarding rule is better? Why?\
     The only difference between 2 forwarding rule is in flow **h2->h1**\
@@ -235,14 +235,14 @@ Then use `$ mn -c` to clean it up (it would also terminate the Ryu-manager)
     In SimpleController.py s3 directly forwards datagrams to switch s1(s3->s1)\
     Link **s1<->s3** has lower bandwidth & higher delay, loss rate than both link **s1<->s2** and link **s2<->s3**
     > **Bandwidth comparison**:\
-    > min(s1<->s2, s2<->s3)=**20Mbps > 3Mbs**=s3->s1\
+    > min(s1<->s2, s2<->s3)=**20Mbps > 3Mbps**=s3->s1\
     > **Delay**:\
     > s3->s2->s1=2ms+2ms=**4ms < 10ms**=s3->s1\
     > **Data completeness**:\
     > s3->s2->s1 99%*99%=**98.01% > 97%**=s3->s1
 
     Theoretically speaking, **the forwarding rule in controller.py is better**, which use the link s1<->s2 and link s2<->s3
-    ##### Since there is only a total of 1MB packets transfered, so you can't see huge difference between result1 & result2(SimpleController.py & controller.py) #
+    ##### Since there is only a total of approximatley 1MB packets transfered, so you can't see huge difference between result1 & result2(SimpleController.py & controller.py) #
 ---
 ## References
 
