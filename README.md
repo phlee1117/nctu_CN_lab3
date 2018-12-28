@@ -15,7 +15,7 @@ In this lab, we are going to write a Python program with Ryu SDN framework to bu
 
 ---
 ## Execution
-> create network topology accroding to ./src/topo/topo.png\
+> create network topology accroding to ./src/topo/topo.jpg\
 > Execute in the Ubuntu container(mininet & python & Ryu-Manager installed)\
 > To enter the container, use following commands:\
 > `$ ssh -p 16077 root@140.113.195.69`(password=1234)\
@@ -132,10 +132,10 @@ Then use `$ mn -c` to clean it up (it would also terminate the Ryu-manager)
     1. Build the topology via Mininet\
     First, duplicate the example code SimpleTopo.py and name it topo.py\
     `$ cp SimpleTopo.py topo.py`\
-    Add the constraints (e.g., bandwidth, delay, and loss rate) by Route_Configuration/src/topo/topo.png
-    ![topo](./src/topo/topo.png)
+    Add the constraints (e.g., bandwidth, delay, and loss rate) by Route_Configuration/src/topo/topo.jpg
+    ![topo](./src/topo/topo.jpg)
     Here's an example code about creating link s1-s3\
-    `self.addLink(s1, s3, port1=3, port2=2, bw=10, delay='5ms', loss=2)`
+    `self.addLink(s1, s3, port1=3, port2=2, bw=3, delay='10ms', loss=3)`
     2. Test our topo.py with SimpleController.py\
     Run topo.py in one terminal first\
     `$ mn --custom topo.py --topo topo --link tc --controller remote`\
@@ -190,15 +190,15 @@ Then use `$ mn -c` to clean it up (it would also terminate the Ryu-manager)
     For **packet-in**, it means transfering the received packets to the controller\
     For **packet-out**, it means transfering the packets forwarded by the controller from the specified port
 2. What is “table-miss” in SDN?
-   When the Flow Table could not find any Flow Entry meeting the rules, the situation is called “table-miss”\
+   When the packet is sent into the switch, if the Flow Table could not find any Flow Entry meeting the rules in the packet, the situation is called “table-miss”\
    When “table-miss” happens, it would run the existing method created for “table-miss”\
    You can consider table-miss Entry a Flow Entry that **matches all situation**(probably using wildcard) and has the **lowest priority**(which is 0)
 3. Why is "`(app_manager.RyuApp)`" adding after the declaration of class in `controller.py`?\
-   `class xxx(ooo):` means we create class `xxx` inhereting class `ooo`\
+   `class xxx(ooo):` means we create class `xxx` inhereting parent class `ooo`\
    In this case, we create the class `SimpleController1` by inheriting the class `ryu.base.app_manager.RyuApp`, which is **the base class for Ryu applications**
 4. Explain the following code in `controller.py`.
     ```python
-    @set_ev_cls(ofp_event.EventOFPPacketIn, CONFIG_DISPATCHER)
+    @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
     ```
     **What is decorator?**
     ```python
@@ -213,9 +213,9 @@ Then use `$ mn -c` to clean it up (it would also terminate the Ryu-manager)
     is **a decorator for Ryu application to declare an event handler**\
     Decorated method will become an event handler.
     - `ev_cls` is an event class whose instances this RyuApp wants to receive\
-    In this case, we want `ofp_event.EventOFPPacketIn`, which means events of packet-in.(decorator used on `def packet_in_handler(self, ev):`)
+    In this case, we want `ofp_event.EventOFPPacketIn`, which means **events of packet-in**.(decorator used on `def packet_in_handler(self, ev):`)
     - `dispatchers` argument specifies one of the negotiation phases (or a list of them) for which events should be generated for this handler\
-    In this case, `CONFIG_DISPATCHER` means the negotiation phase that version negotiated and sending features-request message
+    In this case, `MAIN_DISPATCHER` means the negotiation phase that **switch-features message received and sending set-config message**
 
 5. What is the meaning of “datapath” in `controller.py`?\
    “datapath” means **the switch in the topology using OpenFlow**
@@ -235,13 +235,14 @@ Then use `$ mn -c` to clean it up (it would also terminate the Ryu-manager)
     In SimpleController.py s3 directly forwards datagrams to switch s1(s3->s1)\
     Link **s1<->s3** has lower bandwidth & higher delay, loss rate than both link **s1<->s2** and link **s2<->s3**
     > **Bandwidth comparison**:\
-    > min(s1<->s2, s2<->s3)=**20Mbps > 10Mbs**=s3->s1\
+    > min(s1<->s2, s2<->s3)=**20Mbps > 3Mbs**=s3->s1\
     > **Delay**:\
-    > s3->s2->s1=2ms+2ms=**4ms < 5ms**=s3->s1\
+    > s3->s2->s1=2ms+2ms=**4ms < 10ms**=s3->s1\
     > **Data completeness**:\
-    > s3->s2->s1 99%*99%=**98.01% > 98%**=s3->s1
+    > s3->s2->s1 99%*99%=**98.01% > 97%**=s3->s1
 
-    So it's easy to tell **the forwarding rule in controller.py is better**, which use the link s1<->s2 and link s2<->s3
+    Theoretically speaking, **the forwarding rule in controller.py is better**, which use the link s1<->s2 and link s2<->s3
+    ##### Since there is only a total of 1MB packets transfered, so you can't see huge difference between result1 & result2(SimpleController.py & controller.py) #
 ---
 ## References
 
